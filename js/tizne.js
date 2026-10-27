@@ -159,3 +159,151 @@ if (form) {
     if (status) status.textContent = '> Mensaje entregado al carbón. Se abrirá tu programa de correo.';
   });
 }
+
+const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- PORTADA: fantasma de mala impresión ---------- */
+const tituloHero = document.querySelector('#inicio h1');
+
+if (tituloHero) {
+  const fantasma = document.createElement('span');
+  fantasma.className = 'fantasma';
+  fantasma.setAttribute('aria-hidden', 'true');
+  fantasma.innerHTML = tituloHero.innerHTML;
+  tituloHero.appendChild(fantasma);
+}
+
+/* ---------- PORTADA: ceniza que cae y se agita con el cursor ---------- */
+const lienzo = document.getElementById('hollin');
+
+if (lienzo && lienzo.getContext) {
+  const ctx = lienzo.getContext('2d');
+  const hero = lienzo.parentElement;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const cursor = { x: -9999, y: -9999, activo: false };
+  let ancho = 0, alto = 0, particulas = [], visible = true, ultimo = 0;
+
+  const nueva = (enCualquierAltura) => ({
+    x: Math.random() * ancho,
+    y: enCualquierAltura ? Math.random() * alto : -10,
+    t: 1 + Math.random() * 3.2,               // tamaño
+    vy: 0.15 + Math.random() * 0.55,          // caída
+    vx: 0,
+    fase: Math.random() * Math.PI * 2,
+    gris: 120 + Math.floor(Math.random() * 120),
+    a: 0.25 + Math.random() * 0.6,
+    giro: Math.random() * Math.PI,
+  });
+
+  function medir() {
+    ancho = hero.clientWidth;
+    alto = hero.clientHeight;
+    lienzo.width = ancho * dpr;
+    lienzo.height = alto * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const total = Math.round(Math.min(170, (ancho * alto) / 9000));
+    particulas = Array.from({ length: total }, () => nueva(true));
+  }
+
+  function dibujar(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.giro);
+    ctx.fillStyle = `rgba(${p.gris},${p.gris},${p.gris},${p.a})`;
+    // ceniza = esquirlas rectas, nunca círculos
+    ctx.fillRect(-p.t / 2, -p.t / 2, p.t, p.t * 0.6);
+    ctx.restore();
+  }
+
+  function cuadro(ahora) {
+    if (!visible) return;
+    const dt = Math.min(3, (ahora - ultimo) / 16.7 || 1);
+    ultimo = ahora;
+    ctx.clearRect(0, 0, ancho, alto);
+
+    for (const p of particulas) {
+      p.fase += 0.012 * dt;
+      // el cursor sopla la ceniza
+      if (cursor.activo) {
+        const dx = p.x - cursor.x, dy = p.y - cursor.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) {
+          const f = (1 - d2 / 16000) * 0.9;
+          const d = Math.sqrt(d2) || 1;
+          p.vx += (dx / d) * f;
+          p.vy += (dy / d) * f * 0.6;
+        }
+      }
+      p.vx *= 0.94;
+      p.vy += (0.15 + p.t * 0.08 - p.vy) * 0.02;
+      p.x += (p.vx + Math.sin(p.fase) * 0.35) * dt;
+      p.y += p.vy * dt;
+      p.giro += 0.01 * dt;
+      if (p.y > alto + 10 || p.x < -20 || p.x > ancho + 20) Object.assign(p, nueva(false));
+      dibujar(p);
+    }
+    requestAnimationFrame(cuadro);
+  }
+
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    cursor.x = e.clientX - r.left;
+    cursor.y = e.clientY - r.top;
+    cursor.activo = true;
+  });
+  hero.addEventListener('pointerleave', () => { cursor.activo = false; });
+
+  medir();
+  let espera;
+  window.addEventListener('resize', () => { clearTimeout(espera); espera = setTimeout(medir, 150); });
+
+  if (sinMovimiento) {
+    particulas.forEach(dibujar);
+  } else {
+    new IntersectionObserver(([en]) => {
+      const antes = visible;
+      visible = en.isIntersecting;
+      if (visible && !antes) { ultimo = performance.now(); requestAnimationFrame(cuadro); }
+    }).observe(hero);
+    requestAnimationFrame(cuadro);
+  }
+}
+
+/* ---------- TACHONES: en celular se revelan al tocar ---------- */
+document.querySelectorAll('.tachon').forEach(t => {
+  t.setAttribute('tabindex', '0');
+  t.addEventListener('click', () => t.classList.toggle('visto'));
+});
+
+/* ---------- ENTRADAS TIPO IMPRENTA ---------- */
+const porRevelar = document.querySelectorAll(
+  '.section-title, .about-grid > *, .archive-item, .gallery-card, .project-card, .contact-container > *, .text-container'
+);
+
+if ('IntersectionObserver' in window && !sinMovimiento) {
+  const impresor = new IntersectionObserver(entradas => {
+    entradas.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('impreso');
+      impresor.unobserve(en.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+
+  porRevelar.forEach(el => { el.classList.add('revelar'); impresor.observe(el); });
+}
+
+/* ---------- LECTURA: barra de avance ---------- */
+const barra = document.querySelector('.barra-lectura');
+const textoLeido = document.querySelector('.text-container');
+
+if (barra && textoLeido) {
+  const avanzar = () => {
+    const r = textoLeido.getBoundingClientRect();
+    const cabecera = document.querySelector('header').offsetHeight;
+    const total = r.height - window.innerHeight + cabecera;
+    const hecho = total <= 0 ? 1 : Math.min(1, Math.max(0, (cabecera - r.top) / total));
+    barra.style.transform = `scaleX(${hecho})`;
+  };
+  window.addEventListener('scroll', avanzar, { passive: true });
+  avanzar();
+}

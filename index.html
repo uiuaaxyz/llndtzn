@@ -4,15 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LLENO DE TIZNE | Archivo y Poética de la Ceniza</title>
-  <meta name="description" content="Lleno de Tizne: escritura, gestión cultural, edición independiente y servicios editoriales desde Guadalupe, N.L.">
+  <meta name="description" content="Escritura, gestión cultural, edición independiente y servicios editoriales desde Guadalupe, N.L. Poesía, crónica, notas y ensayo.">
   <meta name="theme-color" content="#070707">
+
+  <!-- Vista previa al compartir el link (WhatsApp, Instagram, X, Facebook) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="Lleno de Tizne">
+  <meta property="og:title" content="LLENO DE TIZNE — Archivo y poética de la ceniza">
+  <meta property="og:description" content="Escritura, gestión cultural y edición independiente desde los márgenes del norte.">
+  <meta property="og:url" content="https://uiuaaxyz.github.io/llndtzn/">
+  <meta property="og:image" content="https://uiuaaxyz.github.io/llndtzn/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap">
   <link rel="stylesheet" href="css/tizne.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
+  <!-- Filtro de fotocopia gastada (bordes comidos por el tóner) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="xerox">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="ruido"/>
+      <feDisplacementMap in="SourceGraphic" in2="ruido" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
   <!-- HEADER FIJO -->
   <header>
-    <a href="#inicio" class="logo">TIZNE_</a>
+    <a href="#inicio" class="logo">TIZNE<span class="cursor">_</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
     <nav id="menu">
       <ul>
@@ -30,6 +56,7 @@
 
     <!-- HERO / INICIO -->
     <section id="inicio">
+      <canvas id="hollin" aria-hidden="true"></canvas>
       <p class="hero-kicker">// Archivo y poética de la ceniza — Guadalupe, N.L.</p>
       <h1>Lleno <span class="linea-2">de Tizne</span></h1>
       <p class="hero-sub">Gestión cultural, edición independiente, narrativa visceral y servicios editoriales.</p>
@@ -37,6 +64,7 @@
         <a href="#archivo" class="btn-bruto">Explorar Archivo</a>
         <a href="#proyectos" class="btn-bruto btn-bruto-alt">Ver Proyectos</a>
       </div>
+      <div class="sello" aria-hidden="true">Archivo vivo<strong>Nº 001</strong>Hecho a mano · N.L.</div>
     </section>
 
     <div class="marquee" aria-hidden="true">
@@ -50,10 +78,10 @@
       <div class="about-grid">
         <div class="about-text">
           <!-- INSERTA TU BIOGRAFÍA AQUÍ -->
-          <p>Escritor, gestor cultural y editor independiente. Mi labor se desplaza entre la materialidad de la tinta y la ceniza, coordinando colectivos, talleres literarios y publicaciones que desafían las estructuras hegemónicas.</p>
+          <p>Escritor, gestor cultural y editor independiente. Mi labor se desplaza entre la materialidad de la tinta y la ceniza, coordinando colectivos, talleres literarios y publicaciones que desafían las <span class="tachon" title="Censurado">estructuras hegemónicas</span>.</p>
           <p>Especializado en corrección de estilo, curaduría de catálogos y agenciamiento de voces emergentes en el ecosistema del libro.</p>
         </div>
-        <div class="about-meta">
+        <div class="about-meta cinta">
           <div class="meta-item"><span>UBICACIÓN:</span><span>Guadalupe, N.L.</span></div>
           <div class="meta-item"><span>ESPECIALIDAD:</span><span>Literatura y Edición</span></div>
           <div class="meta-item"><span>COLECTIVOS:</span><span>Narrativas Ferroviarias, LHDS</span></div>
@@ -135,7 +163,7 @@
       -->
       <div class="gallery-grid">
         <button type="button" class="gallery-card" data-modal="modal-galeria-1">
-          <div class="gallery-frame">
+          <div class="gallery-frame" data-folio="01">
             <div class="gallery-placeholder-text">[ Registro visual 01 ]<br>Fanzine &amp; ceniza</div>
           </div>
           <div class="gallery-content">
@@ -146,7 +174,7 @@
         </button>
 
         <button type="button" class="gallery-card" data-modal="modal-galeria-2">
-          <div class="gallery-frame">
+          <div class="gallery-frame" data-folio="02">
             <div class="gallery-placeholder-text">[ Registro visual 02 ]<br>Taller urbano</div>
           </div>
           <div class="gallery-content">
@@ -157,7 +185,7 @@
         </button>
 
         <button type="button" class="gallery-card" data-modal="modal-galeria-3">
-          <div class="gallery-frame">
+          <div class="gallery-frame" data-folio="03">
             <div class="gallery-placeholder-text">[ Registro visual 03 ]<br>Curaduría de archivo</div>
           </div>
           <div class="gallery-content">
@@ -169,7 +197,9 @@
       </div>
     </section>
 
-    <!-- PROYECTOS Y SERVICIOS -->
+    <!-- PROYECTOS Y SERVICIOS (sobre papel: la página se invierte) -->
+    <div class="rasgado" aria-hidden="true"></div>
+    <div class="papel">
     <section id="proyectos">
       <span class="section-num">04 /</span>
       <h2 class="section-title">Proyectos &amp; Servicios</h2>
@@ -177,6 +207,7 @@
       <div class="projects-grid">
         <button type="button" class="project-card" data-modal="modal-proyecto-1">
           <div>
+            <span class="project-num" aria-hidden="true">01</span>
             <span class="project-tag">Edición Independiente</span>
             <h3>Libros Maquetados y Publicados</h3>
             <p>Edición de volúmenes de poesía, narrativa y ensayo crítico con un estricto rigor tipográfico y diseño de interiores.</p>
@@ -186,6 +217,7 @@
 
         <button type="button" class="project-card" data-modal="modal-proyecto-2">
           <div>
+            <span class="project-num" aria-hidden="true">02</span>
             <span class="project-tag">Talleres</span>
             <h3>Talleres de Creación Literaria</h3>
             <p>Espacios pedagógicos enfocados en la recuperación de la memoria cotidiana, la exploración urbana y la escritura visceral.</p>
@@ -195,6 +227,7 @@
 
         <button type="button" class="project-card" data-modal="modal-proyecto-3">
           <div>
+            <span class="project-num" aria-hidden="true">03</span>
             <span class="project-tag">Servicios Editoriales</span>
             <h3>Corrección de Estilo &amp; Pruebas</h3>
             <p>Asesoría integral de manuscritos, marcaje ortotipográfico y preparación de textos para imprenta.</p>
@@ -204,6 +237,7 @@
 
         <button type="button" class="project-card" data-modal="modal-proyecto-4">
           <div>
+            <span class="project-num" aria-hidden="true">04</span>
             <span class="project-tag">Agencia Literaria</span>
             <h3>Agencia &amp; Curaduría</h3>
             <p>Mediación de obra independiente ante sellos editoriales, vinculación y curaduría de catálogos literarios.</p>
@@ -212,6 +246,8 @@
         </button>
       </div>
     </section>
+    </div>
+    <div class="rasgado abajo" aria-hidden="true"></div>
 
     <!-- CONTACTO -->
     <section id="contacto">
@@ -220,7 +256,7 @@
       <div class="contact-container">
         <div class="contact-info">
           <p>¿Tienes un manuscrito que necesita corrección, buscas representación literaria, o te interesa coordinar un taller? Escribe directamente al núcleo del tizne.</p>
-          <div class="about-meta">
+          <div class="about-meta cinta">
             <div class="meta-item"><span>CORREO:</span><span>contacto@llenodetizne.com</span></div>
             <div class="meta-item"><span>UBICACIÓN:</span><span>Guadalupe, N.L., México</span></div>
           </div>

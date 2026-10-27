@@ -10,7 +10,8 @@ css/tizne.css                Todos los estilos (colores, fuentes, texturas)
 js/tizne.js                  Menú móvil, pestañas y filtros del Archivo, pop-ups, formulario
 textos/plantilla-texto.html  Plantilla para cada texto nuevo
 textos/*.html                Páginas de cada texto del Archivo
-img/                         Aquí van tus fotos para la Galería
+img/                         Fotos de la Galería, favicon y og.jpg (vista previa al compartir)
+404.html                     Página de error con la misma estética
 ```
 
 ## Cómo agregar un texto
@@ -33,6 +34,12 @@ Copia la foto a `img/` y reemplaza el `<div class="gallery-placeholder-text">` p
 - Menús, botones y metadatos: **Courier New**
 
 Se cambian en `css/tizne.css`, en las variables `--font-titulos`, `--font-cuerpo` y `--font-mono`.
+
+## Vista previa al compartir
+
+`img/og.jpg` es la imagen que aparece cuando mandas el link por WhatsApp o redes. Las etiquetas
+`og:url` y `og:image` en `index.html` apuntan a `https://uiuaaxyz.github.io/llndtzn/`; si usas
+otro dominio, cámbialas ahí (y la línea `<base href="/llndtzn/">` de `404.html` por `/`).
 
 ## Publicar
 

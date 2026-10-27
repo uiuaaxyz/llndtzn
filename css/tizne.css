@@ -6,8 +6,8 @@
 /* TIPOGRAFÍAS
    Títulos: Rubik Dirt (palo seco bold, raspada, polvosa)
    Cuerpo:  EB Garamond
-   Menús, botones, metadatos: Courier New */
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap');
+   Menús, botones, metadatos: Courier New
+   (se cargan con <link> en el <head> de cada página) */
 
 :root {
   --carbon: #070707;
@@ -60,12 +60,13 @@ body {
 body::after {
   content: '';
   position: fixed;
-  inset: -50%;
+  inset: -10%;
   background-image: var(--grano);
-  opacity: 0.16;
+  opacity: 0.13;
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: 3000;
+  will-change: transform;
   animation: polvo 0.9s steps(4) infinite;
 }
 
@@ -131,7 +132,7 @@ h1, h2, h3, h4, .section-title {
 }
 
 /* ---------- MONO ---------- */
-.logo, nav a, .menu-toggle, .btn-bruto, footer, .meta-item, .text-meta,
+.logo, header nav a, .menu-toggle, .btn-bruto, footer, .meta-item, .text-meta,
 .filter-btn, .tab-btn, .archive-genre, .project-tag, .gallery-tag,
 .contact-form label, .marquee, .project-open, .close-modal {
   font-family: var(--font-mono);
@@ -168,9 +169,9 @@ header {
 
 .logo:hover { background: var(--carbon); color: var(--pure-light); outline: 2px solid var(--pure-light); }
 
-nav ul { display: flex; list-style: none; gap: 0.4rem; }
+header nav ul { display: flex; list-style: none; gap: 0.4rem; }
 
-nav a {
+header nav a {
   display: block;
   color: var(--zinc-light);
   text-decoration: none;
@@ -182,7 +183,7 @@ nav a {
   transition: all 0.1s steps(2);
 }
 
-nav a:hover, nav a.activo {
+header nav a:hover, header nav a.activo {
   background-color: var(--pure-light);
   color: var(--carbon);
   border-color: var(--pure-light);
@@ -239,7 +240,7 @@ section {
   z-index: 0;
 }
 
-#inicio > * { position: relative; z-index: 1; }
+#inicio > :not(#hollin):not(.sello) { position: relative; z-index: 1; }
 
 .hero-kicker {
   font-family: var(--font-mono);
@@ -784,7 +785,7 @@ footer {
 
   .menu-toggle { display: block; }
 
-  nav {
+  header nav {
     position: fixed;
     top: var(--header-h);
     left: 0; right: 0;
@@ -793,11 +794,11 @@ footer {
     display: none;
   }
 
-  nav.abierto { display: block; }
+  header nav.abierto { display: block; }
 
-  nav ul { flex-direction: column; gap: 0; }
+  header nav ul { flex-direction: column; gap: 0; }
 
-  nav a {
+  header nav a {
     font-size: 1.1rem;
     padding: 1rem 1.2rem;
     border: none;
@@ -827,4 +828,259 @@ footer {
   .meta-item { flex-direction: column; gap: 0.1rem; }
   .meta-item span:last-child { text-align: left; }
   .btn-bruto { padding: 0.8rem 1.1rem; font-size: 0.92rem; }
+}
+
+/* =========================================================
+   CAPA FANZINE: hollín, fotocopia, cinta, sellos, tachones
+   ========================================================= */
+
+/* Logo con cursor de máquina de escribir */
+.logo .cursor { animation: parpadeo 1s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+/* Barra fina de "sistema" bajo el header en la portada */
+.hero-kicker .tachon { margin: 0 0.2em; }
+
+/* Lienzo de ceniza que cae en la portada */
+#hollin {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Título con bordes de fotocopia gastada + fantasma de mala impresión */
+#inicio h1 {
+  filter: url(#xerox);
+  position: relative;
+}
+
+#inicio h1 .fantasma {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 244, 242, 0.22);
+  transform: translate(-9px, 5px);
+  pointer-events: none;
+  text-shadow: none;
+  animation: desfase 6s steps(1) infinite;
+}
+
+
+@keyframes desfase {
+  0%, 86%, 100% { transform: translate(-9px, 5px); }
+  88% { transform: translate(14px, -3px); }
+  90% { transform: translate(-22px, 8px); }
+  92% { transform: translate(4px, 0); }
+}
+
+/* Recuadro de la frase: papel con orilla rasgada */
+#inicio p.hero-sub {
+  clip-path: polygon(0 0, 97% 0, 99% 8%, 96.5% 17%, 100% 26%, 97.5% 37%, 99.5% 48%, 96% 58%, 99% 69%, 97% 80%, 100% 90%, 97.5% 100%, 0 100%);
+  padding-right: 3.2rem;
+  box-shadow: none;
+  background-image: var(--grano);
+  background-blend-mode: multiply;
+}
+
+/* Sello de tinta gastada */
+.sello {
+  position: absolute;
+  right: max(2rem, calc((100vw - 1240px) / 2 + 2rem));
+  bottom: 4rem;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--zinc-light);
+  border: 4px double var(--zinc-light);
+  padding: 0.8rem 1.1rem;
+  transform: rotate(-9deg);
+  opacity: 0.75;
+  -webkit-mask-image: var(--grano);
+  mask-image: var(--grano);
+  -webkit-mask-size: 160px;
+  mask-size: 160px;
+}
+
+.sello strong { display: block; font-size: 1.35rem; letter-spacing: 4px; }
+
+/* Cinta adhesiva sobre fichas */
+.cinta { position: relative; }
+.cinta::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 120px;
+  height: 34px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: rgba(220, 220, 215, 0.28);
+  background-image: var(--grano);
+  background-blend-mode: overlay;
+  border-left: 2px dashed rgba(255, 255, 255, 0.2);
+  border-right: 2px dashed rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+/* Tachón de censura: se revela al pasar el cursor o al tocar */
+.tachon {
+  background: var(--pure-light);
+  color: var(--pure-light);
+  padding: 0 0.15em;
+  cursor: help;
+  transition: background-color 0.1s steps(2), color 0.1s steps(2);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.tachon:hover, .tachon:focus, .tachon.visto { background: transparent; color: var(--pure-light); text-decoration: line-through 2px var(--zinc-mid); }
+
+/* Orilla rasgada entre bloques (franja de papel) */
+.rasgado {
+  height: 26px;
+  background: var(--pure-light);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='26' preserveAspectRatio='none'%3E%3Cpolygon points='0,26 0,9 18,14 31,6 47,12 66,3 80,11 97,8 113,15 129,4 146,10 161,2 178,13 196,7 214,12 229,3 247,9 262,6 281,14 298,4 313,11 332,5 349,13 366,8 384,12 400,6 400,26'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='26' preserveAspectRatio='none'%3E%3Cpolygon points='0,26 0,9 18,14 31,6 47,12 66,3 80,11 97,8 113,15 129,4 146,10 161,2 178,13 196,7 214,12 229,3 247,9 262,6 281,14 298,4 313,11 332,5 349,13 366,8 384,12 400,6 400,26'/%3E%3C/svg%3E");
+  -webkit-mask-size: 400px 100%;
+  mask-size: 400px 100%;
+  margin-bottom: -1px;
+}
+
+.rasgado.abajo { transform: scaleY(-1); margin: -1px 0 0; }
+
+/* Franja de papel claro: invierte la página */
+.papel {
+  background: var(--pure-light);
+  background-image: var(--grano), radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.2px);
+  background-size: 220px, 5px 5px;
+  background-blend-mode: multiply, normal;
+  color: var(--carbon);
+}
+
+.papel section { border-bottom: none; }
+.papel .section-title { color: var(--carbon); border-bottom-color: var(--carbon); text-shadow: 3px 3px 0 var(--zinc-light); }
+.papel .section-num, .papel .intro-line { color: #444; }
+
+/* Proyectos sobre papel: retícula negra */
+.papel .projects-grid { border-color: var(--carbon); }
+.papel .project-card { color: var(--carbon); border-color: var(--carbon); }
+.papel .project-card p { color: #2b2b2b; }
+.papel .project-tag, .papel .project-open { color: #555; }
+.papel .project-card:hover, .papel .project-card:focus-visible { background: var(--carbon); color: var(--pure-light); }
+.papel .project-card:hover p, .papel .project-card:hover .project-tag, .papel .project-card:hover .project-open,
+.papel .project-card:focus-visible p, .papel .project-card:focus-visible .project-tag, .papel .project-card:focus-visible .project-open { color: var(--zinc-light); }
+
+.project-num {
+  font-family: var(--font-titulos);
+  font-size: 3.4rem;
+  line-height: 1;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.25;
+}
+
+/* Galería: marcos de fotocopia con trama de medio tono */
+.gallery-frame {
+  background-color: #262626;
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.18) 0 18%, transparent 46%),
+    radial-gradient(rgba(0,0,0,0.75) 1.4px, transparent 1.6px),
+    var(--manchas),
+    var(--grano);
+  background-size: auto, 7px 7px, 420px, 220px;
+  background-blend-mode: normal, multiply, multiply, overlay;
+}
+
+.gallery-card:nth-child(2) .gallery-frame { background-position: 0 0, 0 0, 40% 70%, 0 0; }
+.gallery-card:nth-child(3) .gallery-frame { background-position: 0 0, 0 0, 80% 10%, 0 0; }
+
+.gallery-frame::after {
+  content: attr(data-folio);
+  position: absolute;
+  left: 0.8rem; bottom: 0.6rem;
+  font-family: var(--font-titulos);
+  font-size: 2.6rem;
+  color: rgba(244, 244, 242, 0.35);
+}
+
+.gallery-card:hover .gallery-frame img { filter: grayscale(1) contrast(1.6) brightness(1.05); }
+
+/* Entradas tipo imprenta: el bloque se "imprime" de arriba hacia abajo */
+.js .revelar { clip-path: inset(0 0 100% 0); }
+.js .revelar.impreso { clip-path: inset(0 0 0 0); transition: clip-path 0.42s steps(6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .revelar { clip-path: none; }
+  #inicio h1 .fantasma, .logo .cursor { animation: none; }
+}
+
+/* ---------- LECTURA: barra de avance y navegación entre textos ---------- */
+.barra-lectura {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: var(--pure-light);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 999;
+}
+
+.text-meta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem; }
+.text-meta-row .text-meta { margin-bottom: 0; }
+.tiempo-lectura { font-family: var(--font-mono); font-size: 0.82rem; color: var(--zinc-mid); text-transform: uppercase; }
+
+.entre-textos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 3rem;
+  border: 4px solid var(--zinc-light);
+}
+
+.entre-textos a {
+  display: block;
+  padding: 1.4rem 1.6rem;
+  text-decoration: none;
+  color: var(--pure-light);
+  transition: background-color 0.1s steps(2), color 0.1s steps(2);
+}
+
+.entre-textos a + a { border-left: 4px solid var(--zinc-light); text-align: right; }
+.entre-textos a:hover, .entre-textos a:focus-visible { background: var(--pure-light); color: var(--carbon); }
+.entre-textos small { display: block; font-family: var(--font-mono); text-transform: uppercase; font-size: 0.78rem; color: var(--zinc-mid); margin-bottom: 0.3rem; }
+.entre-textos strong { font-family: var(--font-titulos); font-weight: 400; text-transform: uppercase; font-size: 1.3rem; line-height: 1.1; }
+
+/* ---------- 404 ---------- */
+.perdido {
+  min-height: calc(100vh - var(--header-h));
+  margin-top: var(--header-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem max(1rem, calc((100vw - 1100px) / 2));
+}
+
+.perdido h1 { font-size: clamp(6rem, 30vw, 22rem); line-height: 0.8; text-shadow: 8px 8px 0 var(--zinc-dark); filter: url(#xerox); }
+.perdido p { font-size: 1.5rem; margin: 2rem 0; max-width: 34ch; color: var(--zinc-light); }
+
+@media (max-width: 900px) {
+  .sello { right: 1rem; bottom: 1.4rem; font-size: 0.7rem; padding: 0.5rem 0.7rem; }
+  .sello strong { font-size: 1rem; }
+  #inicio p.hero-sub { padding-right: 2rem; }
+  #inicio h1 .fantasma { transform: translate(-5px, 3px); }
+  .entre-textos { grid-template-columns: 1fr; }
+  .entre-textos a + a { border-left: none; border-top: 4px solid var(--zinc-light); }
+}
+
+@media (max-width: 480px) {
+  .sello { display: none; }
 }

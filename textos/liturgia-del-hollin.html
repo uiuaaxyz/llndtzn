@@ -4,14 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liturgia del hollín | LLENO DE TIZNE</title>
+  <meta name="description" content="El polvo acumulado en los marcos de las puertas no es abandono, es la medida exacta del tiempo que respiramos. Una capa sutil de carbón que desciende…">
   <meta name="theme-color" content="#070707">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="Lleno de Tizne">
+  <meta property="og:title" content="Liturgia del hollín — Lleno de Tizne">
+  <meta property="og:description" content="El polvo acumulado en los marcos de las puertas no es abandono, es la medida exacta del tiempo que respiramos. Una capa sutil de carbón que desciende…">
+  <meta property="og:image" content="https://uiuaaxyz.github.io/llndtzn/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap">
   <link rel="stylesheet" href="../css/tizne.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
   <!-- HEADER FIJO (CONECTADO A LA LANDING PRINCIPAL) -->
   <header>
-    <a href="../index.html#inicio" class="logo">TIZNE_</a>
+    <a href="../index.html#inicio" class="logo">TIZNE<span class="cursor">_</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
     <nav id="menu">
       <ul>
@@ -24,12 +37,16 @@
       </ul>
     </nav>
   </header>
+  <div class="barra-lectura" aria-hidden="true"></div>
 
   <main class="lectura">
     <article class="text-container">
       <!-- CABECERA DEL TEXTO -->
       <div class="text-header">
-        <span class="text-meta">Poesía</span>
+        <div class="text-meta-row">
+          <span class="text-meta">Poesía</span>
+          <span class="tiempo-lectura">Lectura: 1 min</span>
+        </div>
         <h1 class="text-title">Liturgia del hollín</h1>
         <span class="text-author">Por Lleno de Tizne</span>
       </div>
@@ -53,6 +70,12 @@
         <span>Archivo de Tizne // Poesía</span>
       </div>
     </article>
+
+    <!-- ANTERIOR / SIGUIENTE -->
+    <nav class="entre-textos" aria-label="Más textos del archivo">
+      <a href="pulcritud-digital.html"><small>&larr; Anterior</small><strong>Contra la pulcritud digital: Elogio de la página manchada</strong></a>
+      <a href="fundiciones-memoria.html"><small>Siguiente &rarr;</small><strong>Las fundiciones de la memoria norteña</strong></a>
+    </nav>
   </main>
 
   <!-- FOOTER (IDÉNTICO AL DE LA LANDING) -->
