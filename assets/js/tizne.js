@@ -2,7 +2,7 @@
 
 // Cuántos textos caben en cada pestaña del Archivo.
 // Si agregas más textos, las pestañas (Bloque I, II, III...) se crean solas.
-const TEXTOS_POR_BLOQUE = 2;
+const TEXTOS_POR_BLOQUE = 5;
 
 const ROMANOS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 
@@ -54,6 +54,52 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
   const cerrar = overlay.querySelector('.close-modal');
   if (cerrar) cerrar.addEventListener('click', () => closeModal(overlay.id));
 });
+
+document.querySelectorAll('[data-cerrar]').forEach(el => {
+  el.addEventListener('click', () => closeModal(el.closest('.modal-overlay').id));
+});
+
+/* ---------- VISOR DE FOTOS: un pop-up para toda la galería ---------- */
+const visor = document.getElementById('visor');
+const fotos = Array.from(document.querySelectorAll('.gallery-card[data-evento]'));
+let fotoActual = 0;
+
+function mostrarFoto(i) {
+  fotoActual = (i + fotos.length) % fotos.length;
+  const d = fotos[fotoActual].dataset;
+  const marco = visor.querySelector('.visor-foto');
+  marco.innerHTML = '';
+  if (d.foto) {
+    const img = document.createElement('img');
+    img.src = d.foto;
+    img.alt = d.evento;
+    marco.appendChild(img);
+  } else {
+    marco.innerHTML = `<div class="gallery-placeholder-text">[ Registro visual ${d.folio} ]<br>Foto pendiente</div>`;
+  }
+  visor.querySelector('.visor-folio').textContent = `Registro ${d.folio} / ${String(fotos.length).padStart(2, '0')}`;
+  visor.querySelector('#visor-evento').textContent = d.evento;
+  [['fecha', d.fecha], ['lugar', d.lugar], ['fotografo', d.fotografo]].forEach(([campo, valor]) => {
+    const fila = visor.querySelector('.visor-' + campo);
+    fila.hidden = !valor;
+    fila.querySelector('dd').textContent = valor || '';
+  });
+  const ctx = visor.querySelector('.visor-contexto');
+  ctx.hidden = !d.contexto;
+  ctx.textContent = d.contexto || '';
+}
+
+if (visor && fotos.length) {
+  fotos.forEach((f, i) => f.addEventListener('click', () => { mostrarFoto(i); openModal('visor'); }));
+  visor.querySelector('.visor-ant').addEventListener('click', () => mostrarFoto(fotoActual - 1));
+  visor.querySelector('.visor-sig').addEventListener('click', () => mostrarFoto(fotoActual + 1));
+  visor.querySelector('.visor-nav').hidden = fotos.length < 2;
+  document.addEventListener('keydown', e => {
+    if (!visor.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') mostrarFoto(fotoActual - 1);
+    if (e.key === 'ArrowRight') mostrarFoto(fotoActual + 1);
+  });
+}
 
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
@@ -129,13 +175,13 @@ if (archivo) {
 }
 
 /* ---------- NAV: resalta la sección visible ---------- */
-const enlacesNav = document.querySelectorAll('header nav a[href^="#"]');
+const enlacesNav = document.querySelectorAll('header nav a[href*="#"]');
 
 if (enlacesNav.length && 'IntersectionObserver' in window) {
   const obs = new IntersectionObserver(entradas => {
     entradas.forEach(en => {
       if (!en.isIntersecting) return;
-      enlacesNav.forEach(a => a.classList.toggle('activo', a.getAttribute('href') === '#' + en.target.id));
+      enlacesNav.forEach(a => a.classList.toggle('activo', a.hash === '#' + en.target.id));
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
 

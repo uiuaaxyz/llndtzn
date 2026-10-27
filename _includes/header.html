@@ -1,0 +1,23 @@
+{%- assign inicio = '/' | relative_url -%}
+  <!-- Filtro de fotocopia gastada (bordes comidos por el tóner) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="xerox">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="ruido"/>
+      <feDisplacementMap in="SourceGraphic" in2="ruido" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <header>
+    <a href="{{ inicio }}#inicio" class="logo">TIZNE<span class="cursor">_</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav id="menu">
+      <ul>
+        <li><a href="{{ inicio }}#inicio">Inicio</a></li>
+        <li><a href="{{ inicio }}#sobre-mi">Sobre mí</a></li>
+        <li><a href="{{ inicio }}#archivo">Archivo</a></li>
+        <li><a href="{{ inicio }}#galeria">Galería</a></li>
+        <li><a href="{{ inicio }}#proyectos">Proyectos</a></li>
+        <li><a href="{{ inicio }}#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
