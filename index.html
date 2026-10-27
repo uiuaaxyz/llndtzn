@@ -11,14 +11,14 @@ layout: base
     <section id="inicio">
       <canvas id="hollin" aria-hidden="true"></canvas>
       <p class="hero-kicker">// {{ s.lema }} — {{ s.ubicacion }}</p>
-      <h1>Lleno <span class="linea-2">de Tizne</span></h1>
-      <p class="hero-autor"><span>{{ s.autor }}</span></p>
+      <h1>Lleno de Tizne</h1>
+      <p class="hero-autor">{{ s.autor }}</p>
       <p class="hero-sub">{{ s.descripcion }}</p>
       <div class="cta-container">
         <a href="#archivo" class="btn-bruto">Explorar Archivo</a>
         <a href="#galeria" class="btn-bruto btn-bruto-alt">Ver Galería</a>
       </div>
-      <div class="sello" aria-hidden="true">Archivo vivo<strong>Nº {{ textos.size | plus: fotos.size | prepend: '00' | slice: -3, 3 }}</strong>Hecho a mano · N.L.</div>
+      <div class="sello" aria-hidden="true"><span>{{ s.nombre }} · Archivo vivo</span><span>{{ textos.size | plus: fotos.size | prepend: '00' | slice: -3, 3 }}</span></div>
     </section>
 
     <div class="marquee" aria-hidden="true">
@@ -27,13 +27,13 @@ layout: base
 
     <!-- SOBRE MÍ -->
     <section id="sobre-mi">
-      <span class="section-num">01 /</span>
-      <h2 class="section-title">Sobre mí</h2>
+      <p class="section-num">01 · Sobre mí</p>
+      <h2 class="section-title">Entre la tinta <em>y la ceniza</em></h2>
       <div class="about-grid">
         <div class="about-text">
           {{ s.bio | markdownify | replace: 'estructuras hegemónicas', '<span class="tachon" title="Censurado">estructuras hegemónicas</span>' }}
         </div>
-        <div class="about-meta cinta">
+        <div class="about-meta">
           <div class="meta-item"><span>NOMBRE:</span><span>{{ s.autor }}</span></div>
           {%- for d in s.datos %}
           <div class="meta-item"><span>{{ d.etiqueta | upcase }}:</span><span>{{ d.valor }}</span></div>
@@ -44,8 +44,8 @@ layout: base
 
     <!-- ARCHIVO DE TIZNE: se llena solo con cada entrada nueva de _textos -->
     <section id="archivo">
-      <span class="section-num">02 /</span>
-      <h2 class="section-title">Archivo de Tizne</h2>
+      <p class="section-num">02 · Archivo</p>
+      <h2 class="section-title">Archivo <em>de tizne</em></h2>
       <p class="intro-line">Poesía, cuento, crónica, notas periodísticas y ensayo breve extraídos del carbón. Haz clic en cualquier título para leer el texto completo.</p>
 
       <div class="archive-tabs-container"></div>
@@ -75,8 +75,8 @@ layout: base
 
     <!-- GALERÍA: se llena sola con cada foto nueva de _galeria -->
     <section id="galeria">
-      <span class="section-num">03 /</span>
-      <h2 class="section-title">Galería de Registros</h2>
+      <p class="section-num">03 · Galería</p>
+      <h2 class="section-title">Registros <em>de humo</em></h2>
       <p class="intro-line">Memoria visual, fotocopias, pruebas de imprenta y registros de taller y evento. Toda imagen pasa por el carbón: se muestra en escala de grises. Toca una foto para verla completa.</p>
 
       <div class="gallery-grid">
@@ -107,12 +107,11 @@ layout: base
       </div>
     </section>
 
-    <!-- PROYECTOS (sobre papel: la página se invierte) -->
-    <div class="rasgado" aria-hidden="true"></div>
-    <div class="papel">
+    <!-- PROYECTOS (lámina de humo más clara) -->
+    <div class="lamina">
     <section id="proyectos">
-      <span class="section-num">04 /</span>
-      <h2 class="section-title">Proyectos &amp; Colectivos</h2>
+      <p class="section-num">04 · Proyectos</p>
+      <h2 class="section-title">Proyectos <em>y colectivos</em></h2>
       <p class="intro-line">Colectivos, publicaciones, talleres y servicios editoriales. Haz clic en cualquier recuadro para ver el detalle.</p>
       <div class="projects-grid">
         {%- for p in proyectos %}
@@ -130,16 +129,15 @@ layout: base
       </div>
     </section>
     </div>
-    <div class="rasgado abajo" aria-hidden="true"></div>
 
     <!-- CONTACTO -->
     <section id="contacto">
-      <span class="section-num">05 /</span>
-      <h2 class="section-title">Contacto</h2>
+      <p class="section-num">05 · Contacto</p>
+      <h2 class="section-title">Escribe <em>al núcleo</em></h2>
       <div class="contact-container">
         <div class="contact-info">
           <p>{{ s.contacto_texto }}</p>
-          <div class="about-meta cinta">
+          <div class="about-meta">
             <div class="meta-item"><span>CORREO:</span><span><a href="mailto:{{ s.correo }}">{{ s.correo }}</a></span></div>
             {%- for r in s.redes %}
             <div class="meta-item"><span>{{ r.nombre | upcase }}:</span><span><a href="{{ r.url }}" target="_blank" rel="noopener">Abrir &#8599;</a></span></div>

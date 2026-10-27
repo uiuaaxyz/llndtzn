@@ -1,6 +1,6 @@
 # Lleno de Tizne — portafolio de Uriel Moreno
 
-Sitio de escritura, gestión cultural y edición independiente. Estética brutalista: escala de grises, cero curvas, hollín y fotocopia.
+Sitio de escritura, gestión cultural y edición independiente. Estética de humo y brasa: grises con degradados, un solo rojo crudo, sin curvas.
 
 **¿Quieres subir un texto, una foto o cambiar tu contacto?** Lee [GUIA.md](GUIA.md): todo se hace desde el panel de
 [Pages CMS](https://app.pagescms.org) sin tocar código.
@@ -26,7 +26,8 @@ assets/img/     favicon y og.jpg (vista previa al compartir)
 
 ## Fuentes
 
-Títulos en **Rubik Dirt**, cuerpo en **EB Garamond**, menús y botones en **Courier New**
+Títulos en **Cormorant Garamond** (itálica en los grandes), cuerpo en **Public Sans**, etiquetas, menús y botones en **JetBrains Mono**.
+El rojo de acento es `--rojo` en `assets/css/tizne.css`
 (variables `--font-titulos`, `--font-cuerpo` y `--font-mono` en `assets/css/tizne.css`).
 
 ## Publicar y probar

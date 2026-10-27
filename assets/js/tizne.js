@@ -208,18 +208,7 @@ if (form) {
 
 const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- PORTADA: fantasma de mala impresión ---------- */
-const tituloHero = document.querySelector('#inicio h1');
-
-if (tituloHero) {
-  const fantasma = document.createElement('span');
-  fantasma.className = 'fantasma';
-  fantasma.setAttribute('aria-hidden', 'true');
-  fantasma.innerHTML = tituloHero.innerHTML;
-  tituloHero.appendChild(fantasma);
-}
-
-/* ---------- PORTADA: ceniza que cae y se agita con el cursor ---------- */
+/* ---------- PORTADA: ceniza que cae, brasas que suben, el cursor las agita ---------- */
 const lienzo = document.getElementById('hollin');
 
 if (lienzo && lienzo.getContext) {
@@ -229,17 +218,21 @@ if (lienzo && lienzo.getContext) {
   const cursor = { x: -9999, y: -9999, activo: false };
   let ancho = 0, alto = 0, particulas = [], visible = true, ultimo = 0;
 
-  const nueva = (enCualquierAltura) => ({
-    x: Math.random() * ancho,
-    y: enCualquierAltura ? Math.random() * alto : -10,
-    t: 1 + Math.random() * 3.2,               // tamaño
-    vy: 0.15 + Math.random() * 0.55,          // caída
-    vx: 0,
-    fase: Math.random() * Math.PI * 2,
-    gris: 120 + Math.floor(Math.random() * 120),
-    a: 0.25 + Math.random() * 0.6,
-    giro: Math.random() * Math.PI,
-  });
+  const nueva = (enCualquierAltura) => {
+    const brasa = Math.random() < 0.16;      // unas cuantas chispas rojas que suben
+    return {
+      brasa,
+      x: brasa ? ancho * (0.45 + Math.random() * 0.5) : Math.random() * ancho,
+      y: enCualquierAltura ? Math.random() * alto : (brasa ? alto + 10 : -10),
+      t: brasa ? 1 + Math.random() * 2 : 1 + Math.random() * 3,
+      vy: brasa ? -(0.3 + Math.random() * 0.7) : 0.15 + Math.random() * 0.5,
+      vx: 0,
+      fase: Math.random() * Math.PI * 2,
+      gris: 110 + Math.floor(Math.random() * 110),
+      a: brasa ? 0.5 + Math.random() * 0.5 : 0.2 + Math.random() * 0.5,
+      giro: Math.random() * Math.PI,
+    };
+  };
 
   function medir() {
     ancho = hero.clientWidth;
@@ -255,7 +248,8 @@ if (lienzo && lienzo.getContext) {
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.giro);
-    ctx.fillStyle = `rgba(${p.gris},${p.gris},${p.gris},${p.a})`;
+    const a = p.brasa ? p.a * (0.6 + 0.4 * Math.sin(p.fase * 6)) : p.a;
+    ctx.fillStyle = p.brasa ? `rgba(255,${40 + (p.gris % 30)},25,${a})` : `rgba(${p.gris},${p.gris},${p.gris},${a})`;
     // ceniza = esquirlas rectas, nunca círculos
     ctx.fillRect(-p.t / 2, -p.t / 2, p.t, p.t * 0.6);
     ctx.restore();
@@ -281,11 +275,12 @@ if (lienzo && lienzo.getContext) {
         }
       }
       p.vx *= 0.94;
-      p.vy += (0.15 + p.t * 0.08 - p.vy) * 0.02;
+      const objetivo = p.brasa ? -(0.35 + p.t * 0.15) : 0.15 + p.t * 0.08;
+      p.vy += (objetivo - p.vy) * 0.02;
       p.x += (p.vx + Math.sin(p.fase) * 0.35) * dt;
       p.y += p.vy * dt;
       p.giro += 0.01 * dt;
-      if (p.y > alto + 10 || p.x < -20 || p.x > ancho + 20) Object.assign(p, nueva(false));
+      if (p.y > alto + 12 || p.y < -12 || p.x < -20 || p.x > ancho + 20) Object.assign(p, nueva(false));
       dibujar(p);
     }
     requestAnimationFrame(cuadro);
