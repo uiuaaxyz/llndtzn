@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLENO DE TIZNE | Archivo y Poética de la Ceniza</title>
+  <meta name="description" content="Lleno de Tizne: escritura, gestión cultural, edición independiente y servicios editoriales desde Guadalupe, N.L.">
+  <meta name="theme-color" content="#070707">
+  <link rel="stylesheet" href="css/tizne.css">
+</head>
+<body>
+
+  <!-- HEADER FIJO -->
+  <header>
+    <a href="#inicio" class="logo">TIZNE_</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav id="menu">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#archivo">Archivo</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO / INICIO -->
+    <section id="inicio">
+      <p class="hero-kicker">// Archivo y poética de la ceniza — Guadalupe, N.L.</p>
+      <h1>Lleno <span class="linea-2">de Tizne</span></h1>
+      <p class="hero-sub">Gestión cultural, edición independiente, narrativa visceral y servicios editoriales.</p>
+      <div class="cta-container">
+        <a href="#archivo" class="btn-bruto">Explorar Archivo</a>
+        <a href="#proyectos" class="btn-bruto btn-bruto-alt">Ver Proyectos</a>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <span>Poesía ▪ Crónica ▪ Notas periodísticas ▪ Ensayo breve ▪ Edición independiente ▪ Talleres ▪ Corrección de estilo ▪ Agencia literaria ▪ Todo lo sólido se desvanece en tizne ▪</span>
+    </div>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+      <span class="section-num">01 /</span>
+      <h2 class="section-title">Sobre mí</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <!-- INSERTA TU BIOGRAFÍA AQUÍ -->
+          <p>Escritor, gestor cultural y editor independiente. Mi labor se desplaza entre la materialidad de la tinta y la ceniza, coordinando colectivos, talleres literarios y publicaciones que desafían las estructuras hegemónicas.</p>
+          <p>Especializado en corrección de estilo, curaduría de catálogos y agenciamiento de voces emergentes en el ecosistema del libro.</p>
+        </div>
+        <div class="about-meta">
+          <div class="meta-item"><span>UBICACIÓN:</span><span>Guadalupe, N.L.</span></div>
+          <div class="meta-item"><span>ESPECIALIDAD:</span><span>Literatura y Edición</span></div>
+          <div class="meta-item"><span>COLECTIVOS:</span><span>Narrativas Ferroviarias, LHDS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHIVO DE TIZNE -->
+    <section id="archivo">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Archivo de Tizne</h2>
+      <p class="intro-line">Notas periodísticas, fragmentos poéticos, crónicas urbanas y ensayos breves extraídos del carbón. Haz clic en cualquier título para leer el texto completo.</p>
+
+      <!-- Las pestañas (Bloque I, II...) se generan solas según cuántos textos haya -->
+      <div class="archive-tabs-container"></div>
+
+      <!-- FILTROS DE GÉNERO -->
+      <div class="archive-controls">
+        <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+        <button type="button" class="filter-btn" data-filter="poesia">Poesía</button>
+        <button type="button" class="filter-btn" data-filter="cronica">Crónica</button>
+        <button type="button" class="filter-btn" data-filter="nota">Notas Periodísticas</button>
+        <button type="button" class="filter-btn" data-filter="ensayo">Ensayo Breve</button>
+      </div>
+
+      <!--
+        PARA AGREGAR UN TEXTO NUEVO:
+        1. Duplica textos/plantilla-texto.html y escribe tu texto.
+        2. Copia uno de estos bloques .archive-item, cambia el género (data-category),
+           el título, el enlace y el fragmento. Las pestañas se acomodan solas.
+        Géneros: poesia · cronica · nota · ensayo
+      -->
+      <div class="archive-list">
+
+        <article class="archive-item" data-category="poesia">
+          <div class="archive-header-row">
+            <span class="archive-genre">Poesía</span>
+          </div>
+          <h4><a href="textos/liturgia-del-hollin.html">Liturgia del hollín</a></h4>
+          <div class="archive-snippet">"El polvo acumulado en los marcos de las puertas no es abandono, es la medida exacta del tiempo que respiramos..."</div>
+        </article>
+
+        <article class="archive-item" data-category="cronica">
+          <div class="archive-header-row">
+            <span class="archive-genre">Crónica</span>
+          </div>
+          <h4><a href="textos/fundiciones-memoria.html">Las fundiciones de la memoria norteña</a></h4>
+          <div class="archive-snippet">"Bajo el cielo plomizo, las chimeneas exhalan una geografía invisible que se adhiere a la ropa de los transeúntes..."</div>
+        </article>
+
+        <article class="archive-item" data-category="nota">
+          <div class="archive-header-row">
+            <span class="archive-genre">Nota Periodística</span>
+          </div>
+          <h4><a href="textos/edicion-independiente.html">El estado actual de la edición independiente</a></h4>
+          <div class="archive-snippet">"Ante la centralización cultural, los sellos autogestivos abren brecha con tirajes artesanales y distribución de guerrilla..."</div>
+        </article>
+
+        <article class="archive-item" data-category="ensayo">
+          <div class="archive-header-row">
+            <span class="archive-genre">Ensayo Breve</span>
+          </div>
+          <h4><a href="textos/pulcritud-digital.html">Contra la pulcritud digital: Elogio de la página manchada</a></h4>
+          <div class="archive-snippet">"La obsesión contemporánea por el píxel prístino ha esterilizado la experiencia de la lectura; necesitamos el error, la mancha..."</div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- GALERÍA DE REGISTROS -->
+    <section id="galeria">
+      <span class="section-num">03 /</span>
+      <h2 class="section-title">Galería de Registros</h2>
+      <p class="intro-line">Memoria visual, fotocopias, pruebas de imprenta y registros de taller. Toda imagen pasa por el carbón: se muestra en escala de grises.</p>
+
+      <!--
+        PARA PONER UNA FOTO: reemplaza el <div class="gallery-placeholder-text">
+        por <img src="img/tu-foto.jpg" alt="Descripción de la foto">
+      -->
+      <div class="gallery-grid">
+        <button type="button" class="gallery-card" data-modal="modal-galeria-1">
+          <div class="gallery-frame">
+            <div class="gallery-placeholder-text">[ Registro visual 01 ]<br>Fanzine &amp; ceniza</div>
+          </div>
+          <div class="gallery-content">
+            <span class="gallery-tag">Impresión Artesanal</span>
+            <h3>Maquetación de Plaquette</h3>
+            <p>Pruebas de galera y ajustes tipográficos de cuerpos en papel bond reciclado.</p>
+          </div>
+        </button>
+
+        <button type="button" class="gallery-card" data-modal="modal-galeria-2">
+          <div class="gallery-frame">
+            <div class="gallery-placeholder-text">[ Registro visual 02 ]<br>Taller urbano</div>
+          </div>
+          <div class="gallery-content">
+            <span class="gallery-tag">Gestión Cultural</span>
+            <h3>Sesión de Crónica en Museo</h3>
+            <p>Registro del taller abierto sobre memoria territorial y rescate de testimonios.</p>
+          </div>
+        </button>
+
+        <button type="button" class="gallery-card" data-modal="modal-galeria-3">
+          <div class="gallery-frame">
+            <div class="gallery-placeholder-text">[ Registro visual 03 ]<br>Curaduría de archivo</div>
+          </div>
+          <div class="gallery-content">
+            <span class="gallery-tag">Material Gráfico</span>
+            <h3>Pruebas de Linotipia</h3>
+            <p>Fragmentos de textos rescatados y estructurados bajo retículas de diseño brutal.</p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- PROYECTOS Y SERVICIOS -->
+    <section id="proyectos">
+      <span class="section-num">04 /</span>
+      <h2 class="section-title">Proyectos &amp; Servicios</h2>
+      <p class="intro-line">Haz clic directamente en cualquier recuadro para ver el detalle.</p>
+      <div class="projects-grid">
+        <button type="button" class="project-card" data-modal="modal-proyecto-1">
+          <div>
+            <span class="project-tag">Edición Independiente</span>
+            <h3>Libros Maquetados y Publicados</h3>
+            <p>Edición de volúmenes de poesía, narrativa y ensayo crítico con un estricto rigor tipográfico y diseño de interiores.</p>
+          </div>
+          <span class="project-open">[+] Abrir registro</span>
+        </button>
+
+        <button type="button" class="project-card" data-modal="modal-proyecto-2">
+          <div>
+            <span class="project-tag">Talleres</span>
+            <h3>Talleres de Creación Literaria</h3>
+            <p>Espacios pedagógicos enfocados en la recuperación de la memoria cotidiana, la exploración urbana y la escritura visceral.</p>
+          </div>
+          <span class="project-open">[+] Abrir registro</span>
+        </button>
+
+        <button type="button" class="project-card" data-modal="modal-proyecto-3">
+          <div>
+            <span class="project-tag">Servicios Editoriales</span>
+            <h3>Corrección de Estilo &amp; Pruebas</h3>
+            <p>Asesoría integral de manuscritos, marcaje ortotipográfico y preparación de textos para imprenta.</p>
+          </div>
+          <span class="project-open">[+] Abrir registro</span>
+        </button>
+
+        <button type="button" class="project-card" data-modal="modal-proyecto-4">
+          <div>
+            <span class="project-tag">Agencia Literaria</span>
+            <h3>Agencia &amp; Curaduría</h3>
+            <p>Mediación de obra independiente ante sellos editoriales, vinculación y curaduría de catálogos literarios.</p>
+          </div>
+          <span class="project-open">[+] Abrir registro</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <span class="section-num">05 /</span>
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>¿Tienes un manuscrito que necesita corrección, buscas representación literaria, o te interesa coordinar un taller? Escribe directamente al núcleo del tizne.</p>
+          <div class="about-meta">
+            <div class="meta-item"><span>CORREO:</span><span>contacto@llenodetizne.com</span></div>
+            <div class="meta-item"><span>UBICACIÓN:</span><span>Guadalupe, N.L., México</span></div>
+          </div>
+        </div>
+        <!-- data-correo: el correo al que llegan los mensajes -->
+        <form class="contact-form" data-correo="contacto@llenodetizne.com">
+          <div class="form-group">
+            <label for="nombre">Nombre / Colectivo</label>
+            <input type="text" id="nombre" required placeholder="Tu nombre...">
+          </div>
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" required placeholder="tu@correo.com">
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje / Propuesta</label>
+            <textarea id="mensaje" rows="5" required placeholder="Escribe tu mensaje..."></textarea>
+          </div>
+          <button type="submit" class="btn-bruto">Enviar Mensaje</button>
+          <p class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODALES: GALERÍA -->
+  <div id="modal-galeria-1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mg1">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="gallery-tag">Registro 01</span>
+      <h3 id="mg1">Maquetación de Plaquette</h3>
+      <p>Detalle del proceso de formación tipográfica: pruebas de galera, ajuste de cuerpos y márgenes, e impresión en papel bond reciclado para una plaquette de tiraje corto.</p>
+    </div>
+  </div>
+
+  <div id="modal-galeria-2" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mg2">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="gallery-tag">Registro 02</span>
+      <h3 id="mg2">Sesión de Crónica en Museo</h3>
+      <p>Memoria fotográfica del taller introductorio de crónica: ejercicios de memoria territorial y rescate de testimonios del barrio.</p>
+    </div>
+  </div>
+
+  <div id="modal-galeria-3" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mg3">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="gallery-tag">Registro 03</span>
+      <h3 id="mg3">Pruebas de Linotipia</h3>
+      <p>Estudio de cajas tipográficas y maquetación brutal: fragmentos rescatados del archivo y recompuestos en retícula.</p>
+    </div>
+  </div>
+
+  <!-- MODALES: PROYECTOS -->
+  <div id="modal-proyecto-1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mp1">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="project-tag">Detalle de Proyecto</span>
+      <h3 id="mp1">Libros Editados y Maquetados</h3>
+      <p>Trabajo exhaustivo en selección tipográfica (uso de tipografías con oldstyle figures), diseño de cajas de texto, formación de interiores y gestión integral de impresión para volúmenes independientes de poesía y narrativa.</p>
+      <a href="#" target="_blank" rel="noopener" class="btn-bruto">Ver Catálogo Externo</a>
+    </div>
+  </div>
+
+  <div id="modal-proyecto-2" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mp2">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="project-tag">Detalle de Proyecto</span>
+      <h3 id="mp2">Talleres de Creación Literaria</h3>
+      <p>Talleres orientados a la disección de la realidad cotidiana a través de herramientas de la non-fiction y la memoria urbana.</p>
+      <a href="#" target="_blank" rel="noopener" class="btn-bruto">Inscripciones / Temario</a>
+    </div>
+  </div>
+
+  <div id="modal-proyecto-3" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mp3">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="project-tag">Detalle de Servicio</span>
+      <h3 id="mp3">Corrección de Estilo y Pruebas</h3>
+      <p>Revisión minuciosa de sintaxis, puntuación, coherencia discursiva y normalización ortotipográfica bajo estándares profesionales de edición.</p>
+      <a href="#contacto" class="btn-bruto" onclick="closeModal('modal-proyecto-3')">Cotizar</a>
+    </div>
+  </div>
+
+  <div id="modal-proyecto-4" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mp4">
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Cerrar">X</button>
+      <span class="project-tag">Detalle de Servicio</span>
+      <h3 id="mp4">Agencia Literaria Independiente</h3>
+      <p>Representación y acompañamiento de autores en la vinculación con editoriales, revisión de contratos y estrategia de posicionamiento de obra.</p>
+      <a href="#contacto" class="btn-bruto" onclick="closeModal('modal-proyecto-4')">Escribir</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-col">
+      <h4>Lleno de Tizne</h4>
+      <p>Archivo, edición y gestión cultural desde los márgenes del norte.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#archivo">Archivo</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Secciones del Archivo</h4>
+      <ul>
+        <li><a href="#archivo" data-filtrar="poesia">Poesía</a></li>
+        <li><a href="#archivo" data-filtrar="cronica">Crónica</a></li>
+        <li><a href="#archivo" data-filtrar="nota">Notas Periodísticas</a></li>
+        <li><a href="#archivo" data-filtrar="ensayo">Ensayo Breve</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Lleno de Tizne. Cero curvas. Ángulos rectos estrictos. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script src="js/tizne.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Título del Texto o Manuscrito | LLENO DE TIZNE</title>
+  <meta name="theme-color" content="#070707">
+  <link rel="stylesheet" href="../css/tizne.css">
+</head>
+<body>
+
+  <!-- HEADER FIJO (CONECTADO A LA LANDING PRINCIPAL) -->
+  <header>
+    <a href="../index.html#inicio" class="logo">TIZNE_</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav id="menu">
+      <ul>
+        <li><a href="../index.html#inicio">Inicio</a></li>
+        <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+        <li><a href="../index.html#archivo">Archivo</a></li>
+        <li><a href="../index.html#galeria">Galería</a></li>
+        <li><a href="../index.html#proyectos">Proyectos</a></li>
+        <li><a href="../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="lectura">
+    <article class="text-container">
+      <!--
+        PLANTILLA: duplica este archivo para cada texto nuevo
+        (ej. textos/mi-cuento.html), cambia género, título, autor y cuerpo,
+        y enlázalo desde el Archivo en index.html.
+      -->
+      <!-- CABECERA DEL TEXTO -->
+      <div class="text-header">
+        <span class="text-meta">Género (Poesía / Crónica / Nota / Ensayo)</span>
+        <h1 class="text-title">Título del Texto o Manuscrito</h1>
+        <span class="text-author">Por [Tu nombre]</span>
+      </div>
+
+      <!-- CUERPO DEL TEXTO -->
+      <div class="text-body">
+        <p>Aquí comienza el cuerpo principal del texto. Puedes redactar párrafos de prosa, ensayos o crónicas; cada párrafo va dentro de su propia etiqueta &lt;p&gt;.</p>
+
+        <!-- Si es poema, usa este bloque. Cada verso termina con <br> -->
+        <div class="poetic-format">
+          <p>El polvo acumulado en los marcos de las puertas no es abandono,<br>
+          es la medida exacta del tiempo que respiramos.<br>
+          Una capa sutil de carbón que desciende...</p>
+        </div>
+
+        <p>Continúan los párrafos posteriores o las notas al margen que forman parte de la publicación.</p>
+      </div>
+
+      <!-- NAVEGACIÓN INFERIOR DE RETORNO -->
+      <div class="back-nav">
+        <a href="../index.html#archivo" class="btn-bruto">&larr; Volver al Archivo</a>
+        <span>Archivo de Tizne // Género (Poesía / Crónica / Nota / Ensayo)</span>
+      </div>
+    </article>
+  </main>
+
+  <!-- FOOTER (IDÉNTICO AL DE LA LANDING) -->
+  <footer>
+    <div class="footer-col">
+      <h4>Lleno de Tizne</h4>
+      <p>Archivo, edición y gestión cultural desde los márgenes del norte.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="../index.html#inicio">Inicio</a></li>
+        <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+        <li><a href="../index.html#archivo">Archivo</a></li>
+        <li><a href="../index.html#galeria">Galería</a></li>
+        <li><a href="../index.html#proyectos">Proyectos</a></li>
+        <li><a href="../index.html#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Secciones del Archivo</h4>
+      <ul>
+        <li><a href="../index.html#archivo">Poesía</a></li>
+        <li><a href="../index.html#archivo">Crónica</a></li>
+        <li><a href="../index.html#archivo">Notas Periodísticas</a></li>
+        <li><a href="../index.html#archivo">Ensayo Breve</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Lleno de Tizne. Cero curvas. Ángulos rectos estrictos. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script src="../js/tizne.js"></script>
+</body>
+</html>
